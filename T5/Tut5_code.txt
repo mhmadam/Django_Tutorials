@@ -1,0 +1,27 @@
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py makemigrations
+python manage.py sqlmigrate blog 0001
+python manage.py migrate
+python manage.py shell
+	from blog.models import Post
+	from django.contrib.auth.models import User
+	user.objects.first()
+	user.objects.filter(username='mhmadam')
+	user.objects.filter(username='mhmadam').first()
+	user = user.objects.filter(username='mhmadam').first()
+	user.id
+	user.pk
+	user = User.objects.get(id=1)
+	Post.objects.all()
+	post_1 = Post(title='Blog 1', content='First Post Content!', author=user)
+	post_1.save()
+	post_2 = Post(title='Blog 2', content='Second Post Content!', author_id=user.id)
+	post_2.save()
+	post = Post.objects.first()
+	post.author.email
+	user.post_set
+	user.post_set.all()
+	user.post_set.create(title='Blog 3', content='Third Post Content!')
+	
