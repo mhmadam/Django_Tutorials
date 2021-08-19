@@ -49,6 +49,13 @@ a.article-title:hover {
   white-space: pre-line;
 }
 
+.profile-img {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
 .article-img {
   height: 65px;
   width: 65px;
