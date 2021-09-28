@@ -1,32 +1,11 @@
-{% extends "blog\base.html" %}
+{% extends "blog/base.html" %}
 
 {% block content %}
     {% if user.is_authenticated %}
         <h1 class="text-center ">About {{ user.get_username }}</h1>
-        {% if mess %}
-            <p>{{ mess }}</p>
-        {% endif %}
     {% else %}
         <h1 class="text-center ">About Blog</h1>
     {% endif %}
-    <form action="#" class="container" method="POST">
-        {% csrf_token %}
-        <div class="form-inline justify-content-center">
-            <div class="form-check mb-2 mb-sm-2 mx-2">
-                <input class="form-check-input" type="checkbox" name="car" value="BMW" id="bmw">
-                <label class="form-check-label" for="bmw">BMW</label>
-            </div>
-            <div class="form-check mb-2 mb-sm-2 mx-2">
-                <input class="form-check-input" type="checkbox" name="car" value="Toyota" id="toyota">
-                <label class="form-check-label" for="toyota">Toyota</label>
-            </div>
-            <div class="form-check mb-2 mb-sm-2 mx-2">
-                <input class="form-check-input" type="checkbox" name="car" value="ForD" id="ford">
-                <label class="form-check-label" for="ford">Ford</label>
-            </div>
-            
-            <button type="submit" name="submitbutton" class="btn btn-primary mb-2">Submit</button>
-        </div>
         
     </form>
 {% endblock content%}
