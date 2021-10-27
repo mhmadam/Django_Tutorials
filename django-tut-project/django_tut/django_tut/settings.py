@@ -35,9 +35,8 @@ INSTALLED_APPS = [
     'livereload',
     'captcha',
     'blog.apps.BlogConfig',
-    'news.apps.NewsConfig',
-    'users.apps.UsersConfig',
-    'polls.apps.PollsConfig',
+    'accounts.apps.AccountsConfig',
+    'posts.apps.PostsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,6 +130,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
 LOGIN_REDIRECT_URL = 'blog:home'
 
 LOGIN_URL = 'users:signin'
@@ -138,3 +141,4 @@ LOGIN_URL = 'users:signin'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 GOOGLE_RECAPTCHA_SECRET_KEY = os.environ.get('GOOGLE_RECAPTCHA_SECRET_KEY_v2_CHECKBOX')
+
