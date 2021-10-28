@@ -1,0 +1,103 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <form method="GET" class="d-inline-flex">
+            <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Title</div>
+                </div>
+                <input type="text" name="title" id="id_title" placeholder="{{ srch_holder }}" class="form-control w-50">
+                <button type="submit" class="w-25 form-control btn btn-primary ">Search</button>
+            </div>
+        </form>
+        <div class="mb-3 mr-5 float-right">
+            <a href="{% url 'posts:create_post' %}" class="btn btn-primary">New Post</a>
+        </div>
+
+        <table class="table text-center mb-0">
+            <thead>
+                <th>Auther</th>
+                <th>Title</th>
+                <th>Caption</th>
+                <th class="link">Download</th>
+                <th class="link">Delete</th>
+                <th class="link">Edit</th>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.user }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.caption }}</td>
+                        {% if post.video %}
+                            <td class="link"><a href="{{ post.video.url }}" class="btn btn-success" target="_blank">Download</a></td>
+                        {% else %}
+                            <td class="text-muted">File Unavailable</td>
+                        {% endif %}
+                        {% if user.is_superuser or user.id == post.user.id %}
+                            <td class="link">
+                                <a href="" class="btn btn-primary">Edit</a>
+                            </td>
+                            <td class="link">
+                                <form action="{% url 'posts:delete_post' post.pk %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <hr class="mt-2 pb-3">
+
+        {% if posts.paginator.num_pages > 1 %}
+            <div class="demo pt-2">
+                <nav class="pagination-outer" aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if posts.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ posts.previous_page_number }}" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">«</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="?page=1">1</a></li>
+                            {% if posts.previous_page_number > 2 %}
+                                <li class="page-item other-pages">...</li>
+                            {% endif %}
+                            {% if posts.previous_page_number > 1 %}
+                                <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">{{ posts.previous_page_number }}</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li class="page-item">
+                            </li>
+                        {% endif %}
+                        <li class="page-item active"><a class="page-link" href="#">{{ posts.number }}</a></li>
+                        {% if posts.has_next %}
+                            {% if not posts.next_page_number == posts.paginator.num_pages %}
+                                <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">{{ posts.next_page_number }}</a></li>
+                            {% endif %}
+                            {% if not posts.next_page_number|add:'1' >= posts.paginator.num_pages %}
+                                <li class="page-item other-pages">...</li>
+                            {% endif %}
+                            <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">{{ posts.paginator.num_pages }}</a></li>
+                            <li class="page-item">
+                                <a href="?page={{ posts.next_page_number }}" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class=" text-center align-items-center">
+            <span class="py-3 px-5 alert alert-warning">You should <a href="{% url 'blog:about' %}">login</a>!</span>
+        </div>
+    {% endif %}
+{% endblock content %}

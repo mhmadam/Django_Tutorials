@@ -2,7 +2,10 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h1 class="text-center ">About {{ user.get_username }}</h1>
+        <h1 class="text-center ">About user</h1>
+        {% if user.is_superuser %}
+            <p>user is admin</p>
+        {% endif %}
     {% else %}
         <h1 class="text-center ">About Blog</h1>
     {% endif %}

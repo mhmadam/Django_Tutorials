@@ -1,3 +1,106 @@
-.m20 {
-    margin: 50px 30px 100px 30px;
+.link{
+    width: 10%;
+}
+
+
+.pagination-outer{ text-align: center; }
+.pagination{
+    font-family: 'Kodchasan', sans-serif;
+    padding: 3px 10px;
+    border: 2px solid #1d8eeb;
+    border-radius: 30px;
+    display: inline-flex;
+    position: relative;
+}
+.other-pages,
+.pagination li a.page-link{
+    color: #1d7deb;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin: 0 6px;
+    border: none;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+.pagination li.active a.page-link,
+.pagination li a.page-link:hover,
+.pagination li.active a.page-link:hover{
+    color: #fff;
+    background-color: transparent;
+}
+.pagination li:first-child a.page-link,
+.pagination li:last-child a.page-link{
+    line-height: 25px;
+    height: 32px;
+    width: 32px;
+    margin: 0;
+    border-radius: 50%;
+    border: 2px solid #1d8eeb;
+    position: absolute;
+    left: -50px;
+}
+.pagination li:last-child a.page-link{
+    right: -50px;
+    left: auto;
+}
+.pagination li:first-child a.page-link:hover,
+.pagination li:last-child a.page-link:hover{
+    background-color: #1d7deb;
+}
+.pagination li a.page-link:before,
+.pagination li a.page-link:after{
+    content: '';
+    background-color: #1d7deb;
+    height: 101%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: -50%;
+    z-index: -1;
+    transition: all 0.3s;
+    -webkit-clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 100% 50%, 65% 50%, 29% 50%, 0 50%, 0% 43%, 17% 12%);
+    clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 100% 50%, 65% 50%, 29% 50%, 0 50%, 0% 43%, 17% 12%);
+}
+.pagination li a.page-link:after{
+    top: 100%;
+    transition:all 0.3s;
+    -webkit-clip-path: polygon(53% 50%, 100% 50%, 100% 50%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0 50%, 17% 50%);
+    clip-path: polygon(53% 50%, 100% 50%, 100% 50%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0 50%, 17% 50%);
+}
+.pagination li:first-child a.page-link:before,
+.pagination li:first-child a.page-link:after,
+.pagination li:last-child a.page-link:before,
+.pagination li:last-child a.page-link:after{
+    display: none;
+}
+.pagination li.active a.page-link:before,
+.pagination li a.page-link:hover:before,
+.pagination li.active a.page-link:after,
+.pagination li a.page-link:hover:after{
+    top: 0;
+}
+@media only screen and (max-width: 480px){
+    .pagination{
+        display: block;
+        margin: 0;
+    }
+    .pagination li{
+        margin: 5px 0;
+        display: inline-block;
+    }
+    .pagination li:first-child a.page-link{
+        position: relative;
+        left: auto;
+    }
+    .pagination li:last-child a.page-link{
+        position: relative;
+        right: auto;
+    }
 }

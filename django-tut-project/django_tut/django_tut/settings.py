@@ -34,9 +34,13 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'livereload',
     'captcha',
+    'django_filters',
+    'crispy_forms',
+    
     'blog.apps.BlogConfig',
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,9 +140,10 @@ MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'blog:home'
 
-LOGIN_URL = 'users:signin'
+LOGIN_URL = 'blog:home'#'accounts:signin'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 GOOGLE_RECAPTCHA_SECRET_KEY = os.environ.get('GOOGLE_RECAPTCHA_SECRET_KEY_v2_CHECKBOX')
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

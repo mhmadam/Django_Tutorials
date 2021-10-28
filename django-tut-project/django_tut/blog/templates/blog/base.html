@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="10">
+    <meta http-equiv="refresh" content="">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
     {% block style %}{% endblock style %}
@@ -18,7 +18,7 @@
         <a class="navbar-brand" href="{% url 'blog:home' %}">My Blog</a>
         <ul class="nav nav-tabs">
             <li class="nav-item nav-pills ">
-                <a class="nav-link btn-outline-primary {{ activate_home }}" href="{% url 'blog:home' %}">Home</a>
+                <a class="nav-link btn-outline-primary {{ activate_home }}" href="{% url 'posts:post_list' %}">Home</a>
             </li>
             <li class="nav-item nav-pills">
                 <a class="nav-link btn-outline-primary {{ activate_about }}" href="{% url 'blog:about' %}">About</a>
@@ -36,7 +36,7 @@
             </li>
         </ul>
     </nav>
-    <div class="container">
+    <div class="pt-4 container">
     {% block content %}{% endblock content %}
     </div>
 
