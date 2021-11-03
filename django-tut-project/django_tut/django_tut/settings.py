@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8esy_gqt&0e))5h34(*qkir_vfgyhfcuqasx0+pd78)wvdkiv!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'django_tut.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_tut_pg',
+        'USER': 'postgres',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'POST': '5432',
     }
 }
 
@@ -145,5 +149,9 @@ LOGIN_URL = 'blog:home'#'accounts:signin'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 GOOGLE_RECAPTCHA_SECRET_KEY = os.environ.get('GOOGLE_RECAPTCHA_SECRET_KEY_v2_CHECKBOX')
+
+GOOGLE_RECAPTCHA_SITE_KEY = os.environ.get('GOOGLE_RECAPTCHA_SITE_KEY_v2_CHECKBOX')
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
